@@ -4,7 +4,7 @@ import funcoesDeletar
 import funcoesAtualizar
 import funcoesConsultar
 
-def retornar_conexão():
+def retornar_conexão():#LEMBRAR DE TROCAR
     server  = "DAN-KATH\SQLEXPRESS"
     database = "YDTransporte"
     string_conexao = 'Driver={SQL Server Native Client 11.0};Server='+server+';Database='+database+';Trusted_Connection=yes;'
