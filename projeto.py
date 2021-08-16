@@ -16,20 +16,29 @@ while inicio:
     acao = int(input('O que você deseja fazer?\n Digite 1 - Para inserir novos dados\n Digite 2 - Para deletar dados\n Digite 3 - Para atualizar dados\n Digite 4 - Para realizar consultas\n Digite 5 - Para finalizar\n Digite sua escolha: '))
     conexao = retornar_conexão()
     if acao == 1:
-        acao2 = int(input('O que você deseja fazer?\n Digite 1 - Para inserir novo cliente\n Digite 2 - Para inserir novo aluno\n Digite 3 - Para inserir nova escola\n Digite 4 - Para inserir novo empregado\n Digite 5 - Para inserir novo veículo\n Digite 6 - Para voltar ao menu anterior\n Digite sua escolha: '))
+        acao2 = int(input('O que você deseja fazer?\n Digite 1 - Para inserir novo cliente\n Digite 2 - Para inserir novo aluno\n Digite 3 - Para inserir nova escola\n Digite 4 - Para inserir novo empregado\n Digite 5 - Para inserir novo veículo\n Digite 6 - Para inserir novo contrato (Filial-Cliente)\n Digite 7 - Para inserir novo transporte (Escola-Veículo)\n Digite 8 - Para voltar ao menu anterior\n Digite sua escolha: '))
         if acao2 == 1:
             inserir = ins.inserirCliente(conexao)
             print(inserir)
-            pass
+        elif acao2 == 2:
+            inserir = ins.inserirAluno(conexao)
+            print(inserir)
+        elif acao2 == 3:
+            inserir = ins.inserirEscola(conexao)
+            print(inserir)
+        elif acao2 == 4:
+            inserir = ins.inserirEmpregado(conexao)
+            print(inserir)
         elif acao2 == 5:
             inserir = ins.inserirVeiculo(conexao)
             print(inserir)
+        elif acao2 == 6:
+            inserir = ins.inserirContrato(conexao)
+            print(inserir)
+        elif acao2 == 7:
+            inserir = ins.inserirTransporte(conexao)
+            print(inserir)
+        else:
             pass
-    elif acao == 4: #PARA EPRENDIZADO APENAS
-        cursor = conexao.cursor()
-        cursor.execute("SELECT * FROM aluno")
-        linha = cursor.fetchall()
-        if linha:
-            print(linha)
-
-        print('\n')
+    elif acao == 5:
+        print("Programa Finalizado - Até a próxima!")
