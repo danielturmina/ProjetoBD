@@ -1,139 +1,126 @@
-
 def consultarFilial(conexao):
     try:
-        sql = 'exec [dbo].[qntClientesAlunosEmpregados]'
+        sql = 'SELECT * FROM empresa_filial'
         cursor = conexao.cursor()
         cursor.execute(sql)
         resultado = cursor.fetchall()
         print('\n')
-        print("('CNPJ', 'Razão Social', 'Qnt Clientes', 'Qnt Alunos','Qnt Empregados')")
+        print("('CNPJ', 'Razão Social', 'Município Sede')")
         for x in resultado:
             print(x)
         return "--Consulta Realizada com Sucesso!--\n"
     except:
         return "A consulta não pode ser realizada, os dados foram inseridos incorretamente!\n"
 
-def consultarVeiculoMotorista(conexao):
+def consultarClientes(conexao):
     try:
-        sql = 'exec [dbo].[veiculoMotoristaMaisAlunos]'
-        cursor = conexao.cursor()
-        cursor.execute(sql)
-        resultado = cursor.fetchone()
-        print('\n')
-        print("('Placa', 'Modelo', 'Nome do Motorista', 'Sobrenome do Motorista','Qnt Alunos')")
-        print(resultado)
-        return "--Consulta Realizada com Sucesso!--\n"
-    except:
-        return "A consulta não pode ser realizada, os dados foram inseridos incorretamente!\n"
-
-def consultarQntAlunosCliente(conexao):
-    try:
-        sql = 'exec [dbo].[qntAlunosPorCliente]'
+        sql = 'SELECT * FROM cliente'
         cursor = conexao.cursor()
         cursor.execute(sql)
         resultado = cursor.fetchall()
         print('\n')
-        print("('CPF', 'Nome do Cliente', 'Sobrenome do Cliente', 'Qnt Alunos')")
+        print("('CPF', 'Nome', 'Sobrenome')")
         for x in resultado:
             print(x)
         return "--Consulta Realizada com Sucesso!--\n"
     except:
         return "A consulta não pode ser realizada, os dados foram inseridos incorretamente!\n"
 
-def consultarQntAlunosBairro(conexao):
+def consultarAlunos(conexao):
     try:
-        sql = 'exec [dbo].[qntAlunosPorBairro]'
+        sql = 'SELECT * FROM aluno'
         cursor = conexao.cursor()
         cursor.execute(sql)
         resultado = cursor.fetchall()
         print('\n')
-        print("('Bairro', 'Município', 'Qnt Alunos')")
+        print("('Codigo', 'Data de Nascimento', 'Codigo Escola', 'Nome', 'Sobrenome', 'Rua', 'Numero', Complemento', 'Bairro', 'Municipio', 'Estado', CEP', 'Placa')")
         for x in resultado:
             print(x)
         return "--Consulta Realizada com Sucesso!--\n"
     except:
         return "A consulta não pode ser realizada, os dados foram inseridos incorretamente!\n"
 
-def consultarAlunoPorCliente(conexao):
+def consultarEscolas(conexao):
     try:
-        cpf = input("Digite o CPF do cliente [Formato: 095.038.404-32]: ")
-        sql = 'exec [dbo].[nomeDependente] ?'
+        sql = 'SELECT * FROM escola'
         cursor = conexao.cursor()
-        cursor.execute(sql, cpf)
+        cursor.execute(sql)
         resultado = cursor.fetchall()
         print('\n')
-        print("('Nome do Aluno', 'Sobrenome do Aluno')")
+        print("('Codigo Escola', 'Nome', 'Rua', 'Numero', Complemento', 'Bairro', 'Municipio', 'Estado', CEP')")
         for x in resultado:
             print(x)
         return "--Consulta Realizada com Sucesso!--\n"
     except:
         return "A consulta não pode ser realizada, os dados foram inseridos incorretamente!\n"
 
-def consultarTelefoneCliente(conexao):
+def consultarVeiculos(conexao):
     try:
-        codigo = int(input("Digite o código do aluno: "))
-        sql = 'SELECT [dbo].[telefoneAluno](?)'
+        sql = 'SELECT * FROM veiculo'
         cursor = conexao.cursor()
-        cursor.execute(sql, codigo)
-        resultado = cursor.fetchone()
+        cursor.execute(sql)
+        resultado = cursor.fetchall()
         print('\n')
-        if resultado[0] == None:
-            print("Não há telefone registrado!")
-        else:
-            print("Telefone:",resultado[0])
+        print("('Placa', Categoria Mínima Exigida', 'Modelo', 'Número Máximo de Lugares', 'Número da CNH Motorista', 'CPF Motorista', 'CNPJ Filial' )")
+        for x in resultado:
+            print(x)
         return "--Consulta Realizada com Sucesso!--\n"
     except:
         return "A consulta não pode ser realizada, os dados foram inseridos incorretamente!\n"
 
-def consultarAlunosBairro(conexao):
+def consultaMotoristas(conexao):
     try:
-        nomeBairro = input("Digite o nome do bairro: ")
-        sql = 'SELECT [dbo].[qtdAlunoBairro](?)'
+        sql = 'SELECT * FROM motorista'
         cursor = conexao.cursor()
-        cursor.execute(sql, nomeBairro)
-        resultado = cursor.fetchone()
+        cursor.execute(sql)
+        resultado = cursor.fetchall()
         print('\n')
-        if resultado[0] == None:
-            print("Não há bairro registrado com esse nome!")
-        else:
-            print("Quantidade de Alunos:",resultado[0])
+        print("('CPF', 'Número da CNH', 'Categoria da CNH')")
+        for x in resultado:
+            print(x)
         return "--Consulta Realizada com Sucesso!--\n"
     except:
         return "A consulta não pode ser realizada, os dados foram inseridos incorretamente!\n"
 
-def consultarIdade(conexao):
+def consultarEmpregados(conexao):
     try:
-        codigo = int(input("Digite o código do aluno: "))
-        sql = 'SELECT [dbo].[saberIdade](?)'
+        sql = 'SELECT * FROM empregado'
         cursor = conexao.cursor()
-        cursor.execute(sql, codigo)
-        resultado = cursor.fetchone()
+        cursor.execute(sql)
+        resultado = cursor.fetchall()
         print('\n')
-        if resultado[0] == None:
-            print("Não há aluno com esse código!")
-        else:
-            print("Idade:",resultado[0],"anos")
+        print("('CPF', 'Nome', 'Sobrenome', 'Data de Nascimento', 'CNPJ Filial')")
+        for x in resultado:
+            print(x)
         return "--Consulta Realizada com Sucesso!--\n"
     except:
         return "A consulta não pode ser realizada, os dados foram inseridos incorretamente!\n"
 
-def consultarQntAlunoEscola(conexao):
+def consultarContratos(conexao):
     try:
-        codigo = int(input("Digite o código da escola: "))
-        sql = 'SELECT [dbo].[qtdAlunosPorEscola](?)'
+        sql = 'SELECT * FROM contrata'
         cursor = conexao.cursor()
-        cursor.execute(sql, codigo)
-        resultado = cursor.fetchone()
+        cursor.execute(sql)
+        resultado = cursor.fetchall()
         print('\n')
-        if resultado[0] == None:
-            print("Não há escola com esse código!")
-        else:
-            print("Quantidade de Alunos:",resultado[0],)
+        print("('CNPJ Filia', 'CPF Cliente')")
+        for x in resultado:
+            print(x)
         return "--Consulta Realizada com Sucesso!--\n"
     except:
         return "A consulta não pode ser realizada, os dados foram inseridos incorretamente!\n"
 
-
-
-
+def consultarBairrosAtendidos(conexao):
+    try:
+        sql = 'SELECT * FROM bairros_atend'
+        cursor = conexao.cursor()
+        cursor.execute(sql)
+        resultado = cursor.fetchall()
+        print('\n')
+        print("('Bairro Atendido', 'CNPJ Filial')")
+        for x in resultado:
+            print(x)
+        return "--Consulta Realizada com Sucesso!--\n"
+    except:
+        return "A consulta não pode ser realizada, os dados foram inseridos incorretamente!\n"
 
