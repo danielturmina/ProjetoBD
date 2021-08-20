@@ -1,12 +1,12 @@
 import pyodbc
 import funcoesInserir as ins
-import funcoesDeletar
-import funcoesAtualizar
+import funcoesDeletar as dlt
+import funcoesAtualizar as atl
 import funcoesConsultar
 
 def retornar_conexão():#LEMBRAR DE TROCAR
-    server  = "DAN-KATH\SQLEXPRESS"
-    database = "YDTransporte"
+    server  = ".\SQLEXPRESS"
+    database = "BancoTrabalhoBD"
     string_conexao = 'Driver={SQL Server Native Client 11.0};Server='+server+';Database='+database+';Trusted_Connection=yes;'
     return pyodbc.connect(string_conexao)
 
@@ -40,8 +40,31 @@ while inicio:
             print(inserir)
         elif acao2 == 8:
             inserir = ins.inserirTransporte(conexao)
-            print(inserir)
+            print(inserir) 
         else:
             pass
+
+    elif acao == 2:
+        acao2 = int(input('O que você deseja fazer?\n Digite 1 - Deletar número de telefone do cliente\n Digite 2 - Para deletar um aluno\n Digite 3 - Para deletar um cliente\n Digite 9 - Para voltar ao menu anterior\n Digite sua escolha: '))
+        if acao2 == 1:
+            dlt.deletarTelCliente(conexao)
+        elif acao2 == 2:
+            dlt.deletarAluno(conexao)
+        elif acao2 == 3:
+            dlt.deletarCliente(conexao)
+            
+    elif acao == 3:
+        acao2 = int(input('O que você deseja fazer?\n Digite 1 - Atualizar o endereço de uma escola\n Digite 2 - Atualizar o endereço de um aluno\n Digite 3 - Atualizar o endereço de um Cliente\n Digite 4 - Transferir aluno para outro veículo\n Digite 5 - Transferir empregado para outra filial\n Digite 9 - Para voltar ao menu anterior\n Digite sua escolha: '))
+        if acao2 == 1:
+            atl.atualizarEnd(conexao, 0)
+        elif acao2 == 2:
+            atl.atualizarEnd(conexao, 1)
+        elif acao2 == 3:
+            atl.atualizarEnd(conexao, 2)
+        elif acao2 == 4:
+            atl.atualizarVeiculoAluno(conexao)
+        elif acao2 == 5:
+            atl.atualizarEmpregado(conexao)
+        
     elif acao == 5:
         print("Programa Finalizado - Até a próxima!")
