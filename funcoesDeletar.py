@@ -41,12 +41,4 @@ def deletarCliente(conexao):
 
     return 0
     
-def deletarEscola():
-    #é preciso retirar alunos e clientes, o que não faz sentido. Pois se uma escola é retirada os clientes ficariam null
-    return 0
 
-def deletarEmpregado():
-    return 0
-
-def deletarVeiculo():
-    return 0
